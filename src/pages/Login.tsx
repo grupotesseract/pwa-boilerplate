@@ -1,19 +1,15 @@
 import React from 'react';
-import { Paper } from '@material-ui/core';
 import FormLogin from '../components/FormLogin/FormLogin';
+import { Layout } from 'antd';
+
+const { Content } = Layout;
 
 const Login = () => {
 
     return (
-      <Paper style={{
-        flexDirection: 'column',
-        flex: 1,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        }}>
+      <Content>
         <FormLogin />
-      </Paper>
+      </Content>
     );
 }
 

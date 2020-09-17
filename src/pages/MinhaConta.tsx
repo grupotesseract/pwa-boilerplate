@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Container } from '@material-ui/core';
+import { Layout } from 'antd';
+
+const { Content } = Layout;
 
 class MinhaConta extends Component {
 
   render() {
-    return (
-      <Container>
-        Email:
-      </Container>
-    );
+    return <Content>Informações cadastradas: <span> não possui informações cadastradas </span></Content>;
   }
 }
 

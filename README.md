@@ -1,13 +1,14 @@
 # Boilerplate PWA
 
 ### Funcionalidades incluídas
-- [x] Design System com [Material UI](https://material-ui.com/getting-started/learn)
+- [x] Design System com [Ant Design](https://ant.design/components/overview/)
 - [x] Controle de rotas com [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start)
 - [ ] Variáveis de ambiente
 - [ ] Persistência da store com [redux-persist](https://github.com/rt2zz/redux-persist)
 - [ ] Autenticação via token
 - [x] Configurações de linter e edição do código
 - [ ] Personalização de assets e manifest
+- [ ] Hot Reload
 
 ## Contribuição
 

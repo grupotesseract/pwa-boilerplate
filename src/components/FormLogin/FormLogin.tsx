@@ -1,65 +1,54 @@
-import React, { useState } from 'react';
-import { Button, TextField, CircularProgress } from '@material-ui/core';
-// import * as ProdutosActions from "../store/produtos/actions";
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
+import React from 'react';
+import { Form, Input, Button, Checkbox } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const FormLogin = () => {
-  const error = '';
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [password, setPassword] = useState('');
 
-  const authLogin = async () => {
-    setLoading(true);
-    // signIn({
-    //   email,
-    //   password,
-    // });
-  };
-
-  const handleKeyPress = (keyString: string) => {
-    if (keyString === 'Enter') {
-      authLogin();
-    }
+  const onFinish = (values : any) => {
+    console.log('Received values of form: ', values);
   };
 
   return (
-    <>
-      <TextField
-        error={!!error}
-        id='email'
-        label='Email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        onKeyPress={(e) => handleKeyPress(e.key)}
-      />
-      <TextField
-        error={!!error}
-        type='password'
-        id='senha'
-        label='Senha'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        onKeyPress={(e) => handleKeyPress(e.key)}
-      />
-      <Button color='primary' onClick={() => authLogin()}>
-        {loading ? <CircularProgress color='primary' size={28} /> : 'Entrar'}
-      </Button>
-    </>
+    <Form
+      name="normal_login"
+      className="login-form"
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: 'Please input your Username!' }]}
+      >
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: 'Please input your Password!' }]}
+      >
+        <Input
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
+        />
+      </Form.Item>
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <a className="login-form-forgot" href='/recuperarsenha'>
+          Esqueci minha senha
+        </a>
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          Entrar
+        </Button>
+        ou <a href="/cadastrar">faça seu cadastro</a>
+      </Form.Item>
+    </Form>
   );
 };
 
 export default FormLogin;
-
-// function mapStateToProps(state) {
-//   const { produtos } = state;
-//   return {
-//     filtroProdutos: produtos.filtroProdutos,
-//   };
-// }
-
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(ProdutosActions, dispatch);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Header);

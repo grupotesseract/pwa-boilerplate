@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Container } from '@material-ui/core';
+import { Layout } from 'antd';
+
+const { Content } = Layout;
 
 class Home extends Component {
 
   render() {
-    return (
-        <Container>Tela inicial</Container>
-    );
+    return <Content>Tela Inicial</Content>;
   }
 }
 
