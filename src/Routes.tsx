@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import MinhaConta from "./pages/MinhaConta";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import Sobre from "./pages/Sobre";
 // import { connect } from 'react-redux';
 
 const Routes = ({
@@ -17,6 +18,7 @@ const Routes = ({
     </PrivateRoute>
     <Route exact path='/' component={Home} />
     <Route path='/login' component={Login} />
+    <Route path='/sobre' component={Sobre} />
     <Route path='*' component={Home} />
   </Switch>
 );
