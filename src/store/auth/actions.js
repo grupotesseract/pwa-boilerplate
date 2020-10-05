@@ -9,12 +9,6 @@ export const AuthTypes = {
   RECOVER_FAILURE: 'auth/RECOVER_FAILURE',
 };
 
-export function logout() {
-  return {
-    type: AuthTypes.LOGOUT,
-  };
-}
-
 export function loginRequest() {
   return {
     type: AuthTypes.LOGIN_REQUEST,
@@ -40,6 +34,13 @@ export function loginFailure(error) {
     error: message,
   };
 }
+
+export function logout() {
+  return {
+    type: AuthTypes.LOGOUT,
+  };
+}
+
 
 export function recoverRequest() {
   return {
