@@ -1,15 +1,26 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './FormLogin.scss';
+import { StoreState } from '../../store/createStore';
+import { signInRequest } from '../../store/modules/auth/actions';
 
 const FormLogin = () => {
 
-  const onFinish = (values: {
-    username: string;
+  const { loadingSignInRequest, error } = useSelector((state: StoreState) => state.auth)
+  const dispatch = useDispatch();
+
+  const onFinish = (credenciais: {
+    usuario: string;
     password: string;
   }) => {
-    console.log('Valores recebidos no formulario:', values);
+    const { usuario, password } = credenciais;
+    dispatch(signInRequest({
+      username: usuario,
+      password
+    }));
+    console.log('Valores recebidos no formulario:', credenciais);
   };
 
   return (
@@ -47,6 +58,7 @@ const FormLogin = () => {
             type='primary'
             htmlType='submit'
             className='login-form-button'
+            loading={loadingSignInRequest}
           >
             Entre
           </Button>
