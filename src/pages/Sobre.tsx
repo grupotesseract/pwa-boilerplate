@@ -8,7 +8,7 @@ class Sobre extends Component {
   render() {
     return (
       <Content>
-        <Card title='Sobre o Boilerplate' style={{ maxWidth: 300 }}>
+        <Card title='Sobre o Boilerplate' style={{ maxWidth: 300, margin: '0 auto' }}>
           <p>
             O Boilerplate tem como objetivo facilitar a implementação de
             projetos futuros utilizando funcionalidades que se repetem ao longo
