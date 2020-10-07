@@ -23,6 +23,12 @@ export function signInSuccess({
   });
 }
 
-export function signInFailure() {
-  return action('@auth/SIGN_IN_FAILURE');
+export function signInFailure({
+  errorMsg
+}: {
+  errorMsg: string;
+}) {
+  return action('@auth/SIGN_IN_FAILURE', {
+    errorMsg
+  });
 }
