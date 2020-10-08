@@ -6,6 +6,8 @@ import {
   compose,
 } from 'redux';
 import { AuthState, AuthAction } from "./modules/auth/types";
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 export interface StoreState {
   auth: AuthState;
@@ -20,6 +22,13 @@ export default (
   const enhancer = applyMiddleware(...middlewares);
   const composeEnhancers = compose;
     // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const persistConfig = {
+    key: 'root',
+    storage,
+  };
 
-  return createStore(reducers, composeEnhancers(enhancer));
+  const persistedReducer = persistReducer(persistConfig, reducers);
+  const store = createStore(persistedReducer, composeEnhancers(enhancer));
+
+  return store;
 };

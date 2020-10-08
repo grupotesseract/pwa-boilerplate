@@ -1,7 +1,10 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
+import { AnyAction } from 'redux';
 
-export type AuthAction = ActionType<typeof actions>;
+// Tipagem da action desativada por conta do persistStore
+// export type AuthAction = ActionType<typeof actions>;
+export type AuthAction = AnyAction;
 
 export interface AuthState {
   readonly loadingSignInRequest: boolean;

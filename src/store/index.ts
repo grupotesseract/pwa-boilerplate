@@ -8,7 +8,6 @@ import rootSaga from './modules/rootSaga';
 const sagaMiddleware = createSagaMiddleware();
 
 const middlewares: Middleware[] = [sagaMiddleware];
-
 const store = createStore(rootReducer, middlewares);
 
 sagaMiddleware.run(rootSaga);
