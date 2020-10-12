@@ -31,6 +31,7 @@ export default function auth(state = initialState, action: AuthAction): AuthStat
         loadingSignInRequest: false,
         isSignedIn: false,
         error: true,
+        token: '',
         errorMsg: action.payload.errorMsg,
       };
     default:

@@ -1,5 +1,3 @@
-import { ActionType } from 'typesafe-actions';
-import * as actions from './actions';
 import { AnyAction } from 'redux';
 
 // Tipagem da action desativada por conta do persistStore

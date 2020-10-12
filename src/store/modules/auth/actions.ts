@@ -24,9 +24,9 @@ export function signInSuccess({
 }
 
 export function signInFailure({
-  errorMsg
+  errorMsg = ''
 }: {
-  errorMsg: string;
+  errorMsg?: string;
 }) {
   return action('@auth/SIGN_IN_FAILURE', {
     errorMsg
