@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
-import { Layout, Avatar, Typography, Spin, Badge, Divider } from 'antd';
+import { Layout, Avatar, Typography, Spin, Badge  } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { clientesRequest } from '../../store/modules/clientes/actions';
 import { StoreState } from '../../store/createStore';
 import { UserOutlined } from '@ant-design/icons';
 import './Clientes.scss';
+import Title from 'antd/lib/typography/Title';
 
 const { Content } = Layout;
 const { Text } = Typography;
 
-const Clientes = () => {
-  const filtro = '';
+type ClientesProps = {
+  filtro?: string;
+};
+
+const Clientes = ({ filtro = '' }: ClientesProps) => {
   const dispatch = useDispatch();
   const { clientes, loadingClientes, error } = useSelector(
     (state: StoreState) => state.clientes
@@ -24,6 +28,7 @@ const Clientes = () => {
 
   useEffect(() => {
     dispatch(clientesRequest());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loadingClientes) {
@@ -32,9 +37,12 @@ const Clientes = () => {
   if (error) {
     return <span>Não foi possível carregar os clientes</span>;
   }
+  if (clientesFiltrados.length <= 0) {
+    return <></>;
+  }
   return (
     <Content>
-      <h2>Clientes</h2>
+      {filtro && <Title level={2}>Pessoas</Title>}
       <div className='lista-clientes'>
         {clientesFiltrados.map((cliente) => {
           return (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Layout, Button } from 'antd';
 import { useDispatch } from 'react-redux';
 import { signInFailure } from '../../store/modules/auth/actions';

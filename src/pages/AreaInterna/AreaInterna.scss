@@ -1,4 +1,8 @@
 .area-interna {
+  h1, h2, h3 {
+    text-align: left;
+    padding-left: 1em;
+  }
   .ant-tabs {
     flex: 1;
     .ant-tabs-tab {
@@ -24,6 +28,12 @@
     }
     .texto {
       font-size: 0.7rem;
+    }
+  }
+
+  .filtroativo {
+    .ant-page-header-heading-extra {
+      width: 100%;
     }
   }
 }

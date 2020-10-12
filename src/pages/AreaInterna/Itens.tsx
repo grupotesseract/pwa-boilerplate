@@ -1,15 +1,18 @@
 import React, { useEffect }  from 'react';
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { itensRequest } from '../../store/modules/itens/actions';
 import { StoreState } from '../../store/createStore';
-import { SyncOutlined } from '@ant-design/icons';
 import './Itens.scss';
+import Title from 'antd/lib/typography/Title';
 
 const { Content } = Layout;
 
-const Itens = () => {
-  const filtro = '';
+type ItensProps = {
+  filtro?: string;
+};
+
+const Itens = ({ filtro = '' }: ItensProps) => {
   const dispatch = useDispatch();
   const { itens, loadingItens, error } = useSelector(
     (state: StoreState) => state.itens
@@ -24,17 +27,21 @@ const Itens = () => {
 
   useEffect(() => {
     dispatch(itensRequest());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loadingItens) {
-    return <SyncOutlined spin />
+    return <Spin />
   }
   if (error) {
     return <span>Não foi possível carregar os itens</span>
   }
+  if (itensFiltrados.length <= 0) {
+    return <></>;
+  }
   return (
     <Content>
-      <h2>Itens</h2>
+      {filtro && <Title level={2}>Itens</Title>}
       {itensFiltrados
         .map((item) => {
           return (
