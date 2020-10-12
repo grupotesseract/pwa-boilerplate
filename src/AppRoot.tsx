@@ -10,7 +10,7 @@ function AppRoot() {
     <BrowserRouter>
       <Layout className='App'>
         <Header />
-        <Routes auth={{ isSignedIn: false }} />
+        <Routes />
       </Layout>
     </BrowserRouter>
   );

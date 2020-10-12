@@ -1,20 +1,39 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './FormLogin.scss';
+import { StoreState } from '../../store/createStore';
+import { signInRequest } from '../../store/modules/auth/actions';
+import { useHistory } from 'react-router-dom';
 
 const FormLogin = () => {
 
-  const onFinish = (values: {
-    username: string;
+  let history = useHistory();
+  const { loadingSignInRequest, error, errorMsg, token } = useSelector(
+    (state: StoreState) => state.auth
+  );
+  const dispatch = useDispatch();
+
+  if (token) {
+    history.replace({ pathname: '/minhaconta' })
+  }
+
+  const onFinish = (credenciais: {
+    usuario: string;
     password: string;
   }) => {
-    console.log('Valores recebidos no formulario:', values);
+    const { usuario, password } = credenciais;
+    dispatch(signInRequest({
+      username: usuario,
+      password
+    }));
   };
 
   return (
     <div className='form-container'>
       <Form name='login' className='form-login' onFinish={onFinish}>
+        {error && errorMsg && <Alert type='error' message={errorMsg} />}
         <Form.Item
           name='usuario'
           rules={[{ required: true, message: 'Informe seu usuário!' }]}
@@ -47,6 +66,7 @@ const FormLogin = () => {
             type='primary'
             htmlType='submit'
             className='login-form-button'
+            loading={loadingSignInRequest}
           >
             Entre
           </Button>

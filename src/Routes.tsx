@@ -6,14 +6,14 @@ import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Sobre from './pages/Sobre';
 import Cadastro from './pages/Cadastro'
-// import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { StoreState } from './store/createStore';
 
-const Routes = ({
-  auth: { isSignedIn },
-}: {
-  auth: { isSignedIn: boolean };
-}) => (
-  <Switch>
+const Routes = () => {
+  const { isSignedIn } = useSelector(
+    (state: StoreState) => state.auth
+  );
+  return <Switch>
     <PrivateRoute auth={isSignedIn} path='/minhaconta'>
       <MinhaConta />
     </PrivateRoute>
@@ -23,12 +23,6 @@ const Routes = ({
     <Route path='/sobre' component={Sobre} />
     <Route path='*' component={Home} />
   </Switch>
-);
-
-
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-// });
+};
 
 export default Routes;
-// export default connect(mapStateToProps)(Routes);
