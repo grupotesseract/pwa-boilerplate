@@ -10,12 +10,12 @@ import { useHistory } from 'react-router-dom';
 const FormLogin = () => {
 
   let history = useHistory();
-  const { loadingSignInRequest, error, errorMsg, token } = useSelector(
+  const { loadingSignInRequest, error, errorMsg, isSignedIn } = useSelector(
     (state: StoreState) => state.auth
   );
   const dispatch = useDispatch();
 
-  if (token) {
+  if (isSignedIn) {
     history.replace({ pathname: '/minhaconta' })
   }
 
